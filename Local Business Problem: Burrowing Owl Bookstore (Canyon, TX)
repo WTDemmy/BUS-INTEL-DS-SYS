@@ -34,3 +34,67 @@ flowchart TD
     E --> F[Incentive to Visit Store]
     F --> G[Customer Visits Burrowing Owl Bookstore]
 
+sequenceDiagram
+    participant M as Marketing Team
+    participant L as Locations (Coffee Shops, Bus Stops, Crosswalks)
+    participant P as Pedestrian/Commuter
+    participant F as Flyer with QR Code
+    participant QR as QR Landing Page
+    participant S as Burrowing Owl Bookstore
+
+    M->>L: Places flyers in high-traffic zones
+    L->>P: Flyers are visible in daily commute
+    P->>F: Notices flyer at walkway
+    P->>F: Scans QR code
+    F->>QR: Redirects to digital offer or event
+    QR-->>P: Displays content (promo, event, book)
+    P->>S: Visits Burrowing Owl Bookstore with incentive
+
+classDiagram
+    class Flyer {
+        +String flyerId
+        +String qrCodeURL
+        +Date datePlaced
+        +String campaignName
+    }
+
+    class Location {
+        +String locationId
+        +String name
+        +String type  // Coffee Shop, Bus Stop, etc.
+        +String address
+    }
+
+    class User {
+        +String userId
+        +String deviceType
+        +String timeOfScan
+        +String locationScanned
+    }
+
+    class QRScan {
+        +String scanId
+        +String flyerId
+        +String userId
+        +Date timestamp
+    }
+
+    class LandingPage {
+        +String pageId
+        +String contentType  // Offer, Event, Book Highlight
+        +String link
+    }
+
+    class Bookstore {
+        +String storeId
+        +String name
+        +String location
+        +String offerAvailable
+    }
+
+    Flyer "1" --> "1" LandingPage : links to >
+    Flyer "1" --> "1" Location : placed at >
+    User "1" --> "many" QRScan : performs >
+    Flyer "1" --> "many" QRScan : generates >
+    QRScan "1" --> "1" LandingPage : leads to >
+    LandingPage "1" --> "1" Bookstore : promotes >
