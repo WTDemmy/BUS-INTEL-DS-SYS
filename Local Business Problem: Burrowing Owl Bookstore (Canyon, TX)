@@ -98,3 +98,57 @@ classDiagram
     Flyer "1" --> "many" QRScan : generates >
     QRScan "1" --> "1" LandingPage : leads to >
     LandingPage "1" --> "1" Bookstore : promotes >
+
+erDiagram
+    FLYER {
+        string flyerId PK
+        string qrCodeURL
+        date datePlaced
+        string campaignName
+        string locationId FK
+        string pageId FK
+    }
+
+    LOCATION {
+        string locationId PK
+        string name
+        string type
+        string address
+    }
+
+    USER {
+        string userId PK
+        string deviceType
+        string timeOfScan
+        string locationScanned
+    }
+
+    QRSCAN {
+        string scanId PK
+        string flyerId FK
+        string userId FK
+        string pageId FK
+        date timestamp
+    }
+
+    LANDINGPAGE {
+        string pageId PK
+        string contentType
+        string link
+        string storeId FK
+    }
+
+    BOOKSTORE {
+        string storeId PK
+        string name
+        string location
+        string offerAvailable
+    }
+
+    FLYER }o--|| LOCATION : "placed at"
+    FLYER ||--|| LANDINGPAGE : "links to"
+    FLYER ||--o{ QRSCAN : "generates"
+    USER ||--o{ QRSCAN : "performs"
+    QRSCAN ||--|| LANDINGPAGE : "leads to"
+    LANDINGPAGE }o--|| BOOKSTORE : "promotes"
+
