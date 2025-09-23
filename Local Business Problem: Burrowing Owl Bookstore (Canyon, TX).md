@@ -33,7 +33,8 @@ flowchart TD
     D --> E[Digital Offer or Event Page]
     E --> F[Incentive to Visit Store]
     F --> G[Customer Visits Burrowing Owl Bookstore]
-
+```
+```mermaid
 sequenceDiagram
     participant M as Marketing Team
     participant L as Locations (Coffee Shops, Bus Stops, Crosswalks)
@@ -151,4 +152,5 @@ erDiagram
     USER ||--o{ QRSCAN : "performs"
     QRSCAN ||--|| LANDINGPAGE : "leads to"
     LANDINGPAGE }o--|| BOOKSTORE : "promotes"
+```
 
