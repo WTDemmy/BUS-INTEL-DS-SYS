@@ -19,7 +19,7 @@ Solution: Micro-Zones Ad Network
 A hybrid marketing system that blends **physical flyers** and **QR-based digital engagement**, targeting specific “micro-zones” with high commuter presence and student activity.
 
 How It Works:
-
+ FlowChart Diagram
 ```mermaid
 flowchart TD
     A[Design Flyer with QR Code] --> B[Place in High Traffic Zones]
@@ -50,6 +50,9 @@ sequenceDiagram
     F->>QR: Redirects to digital offer or event
     QR-->>P: Displays content (promo, event, book)
     P->>S: Visits Burrowing Owl Bookstore with incentive
+```
+Class Diagram 
+```mermaid
 
 classDiagram
     class Flyer {
@@ -99,7 +102,9 @@ classDiagram
     Flyer "1" --> "many" QRScan : generates >
     QRScan "1" --> "1" LandingPage : leads to >
     LandingPage "1" --> "1" Bookstore : promotes >
-
+```
+Entity Relationship Diagram 
+```mermaid
 erDiagram
     FLYER {
         string flyerId PK
